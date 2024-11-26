@@ -9,11 +9,11 @@ import axios from 'axios'
 import "./styles.css"
 import ScrollableChat from './ScrollableChat'
 import io from "socket.io-client"
-import Lottie from 'react-lottie'
+// import Lottie from 'react-lottie'
 import animationData from "../Animations/typing.json";
 
 
-const ENDPOINT="http://localhost:5000"
+const ENDPOINT=process.env.BACKEND_URL
 var socket,selectedChatCompare
 
 const SingleChat = ({fetchAgain,setFetchAgain}) => {
@@ -34,7 +34,7 @@ const SingleChat = ({fetchAgain,setFetchAgain}) => {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
-   
+    
    const fetchMessages=async()=>{
     if(!selectedchat) return;
     try {
@@ -45,7 +45,7 @@ const SingleChat = ({fetchAgain,setFetchAgain}) => {
         }
         
       }
-      const {data}=await axios.get(`/api/messages/${selectedchat._id}`,config)
+      const {data}=await axios.get(`${ENDPOINT}/api/messages/${selectedchat._id}`,config)
       
       setMessage(data)
       setLoading(false)
@@ -108,7 +108,7 @@ const SingleChat = ({fetchAgain,setFetchAgain}) => {
         
       }
       setNewMessage("")
-      const {data}=await axios.post('/api/messages',{
+      const {data}=await axios.post(`${ENDPOINT}/api/messages`,{
         content:newMessage,
         chatId:selectedchat._id,
        
@@ -222,11 +222,11 @@ const SingleChat = ({fetchAgain,setFetchAgain}) => {
             <FormControl isRequired mt={3} onKeyDown={sendMessage}>
                
                {isTyping ? <div>
-                <Lottie 
+                {/* <Lottie 
                 options={defaultOptions}
                 width={70}
                 style={{marginBottom:15,marginLeft:0}}
-                />
+                /> */}
                </div> :""}
                <Input
                variant='filled'

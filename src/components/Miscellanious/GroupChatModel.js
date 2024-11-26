@@ -7,6 +7,7 @@ import UserBadgeItem from '../UserAvatar/UserBadgeItem'
 
 
 const GroupChatModel = ({children}) => {
+  const ENDPOINT=process.env.BACKEND_URL
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [groupChatName,setGroupChatName]=useState()
     const [selectedUsers,setSelectedUsers]=useState([])
@@ -30,7 +31,7 @@ const GroupChatModel = ({children}) => {
                 }
             }
 
-            const {data}=await axios.get(`/api/user?search=${search}`,config)
+            const {data}=await axios.get(`${ENDPOINT}/api/user?search=${search}`,config)
            console.log(data);
             setLoading(false)
             setSearchResults(data)
@@ -64,7 +65,7 @@ const GroupChatModel = ({children}) => {
               Authorization:`Bearer ${user.token}`
           }
       }
-      const {data}= await axios.post('/api/chat/group',{
+      const {data}= await axios.post(`${ENDPOINT}/api/chat/group`,{
         name:groupChatName,
         users:JSON.stringify(selectedUsers.map((u)=>u._id))
       },config)

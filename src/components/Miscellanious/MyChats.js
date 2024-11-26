@@ -8,6 +8,7 @@ import { getSender } from '../../Config/ChatLogic'
 import GroupChatModel from './GroupChatModel'
 
 const MyChats = ({fetchAgain}) => {
+  const ENDPOINT=process.env.BACKEND_URL
   const [loggedUser,setLoggedUser]=useState()
   const {chats,setChats, user, setUser,selectedchat,setSelectedChat }=ChatState()
   const toast=useToast()
@@ -22,7 +23,7 @@ const MyChats = ({fetchAgain}) => {
       };
   
       // Corrected: added await before axios.get
-      const { data } = await axios.get('/api/chat', config);
+      const { data } = await axios.get(`${ENDPOINT}/api/chat`, config);
       setChats(data);
     } catch (error) {
       toast({

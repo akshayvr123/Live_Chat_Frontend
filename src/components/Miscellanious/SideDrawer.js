@@ -9,11 +9,11 @@ import axios from 'axios'
 import ChatLoading from './ChatLoading'
 import UserListItem from '../UserAvatar/UserListItem'
 import {getSender} from '../../Config/ChatLogic'
-import { Effect } from 'react-notification-badge'
-import NotificationBadge from 'react-notification-badge/lib/components/NotificationBadge'
+// import { Effect } from 'react-notification-badge'
+// import NotificationBadge from 'react-notification-badge/lib/components/NotificationBadge'
 
 const SideDrawer = () => {
-
+  const ENDPOINT=process.env.BACKEND_URL
   const { isOpen, onOpen, onClose } = useDisclosure()
   const {user,setSelectedChat,chats,setChats,notification,setNotification}=ChatState()
   const [search,setSearch]=useState("")
@@ -40,7 +40,7 @@ const SideDrawer = () => {
             };
 
             
-                const { data } = await axios.post('/api/notification', {
+                const { data } = await axios.post(`${ENDPOINT}/api/notification`, {
                     notification: notification,
                 }, config);
                 
@@ -64,7 +64,7 @@ useEffect(()=>{
             },
         };
 
-        const {data}=await axios.get('/api/notification',config)
+        const {data}=await axios.get(`${ENDPOINT}/api/notification`,config)
         setDisplayNotif(data)
         console.log(data);
        
@@ -96,7 +96,7 @@ useEffect(()=>{
       }
     }
 
-    const {data}= await axios.get(`/api/user/?search=${search}`,config)
+    const {data}= await axios.get(`${ENDPOINT}/api/user/?search=${search}`,config)
     setLoading(false)
     setSearchResult(data)
   } catch (error) {
@@ -121,7 +121,7 @@ const accessChat=async(userId)=>{
       }
     }
 
-    const {data}=await axios.post('/api/chat',{userId},config)
+    const {data}=await axios.post(`${ENDPOINT}/api/chat`,{userId},config)
     if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
     setSelectedChat(data)
     setLoadingChat(false)
@@ -166,10 +166,10 @@ const accessChat=async(userId)=>{
       <div>
         <Menu>
           <MenuButton p={1}>
-            <NotificationBadge
+            {/* <NotificationBadge
             count={notification.length}
             effect={Effect.SCALE}
-            />
+            /> */}
             <BellIcon fontSize='2xl' m={1}></BellIcon>
           </MenuButton>
           <MenuList pl={2}>

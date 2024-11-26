@@ -13,6 +13,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
+  const ENDPOINT=process.env.BACKEND_URL
   const [show, setShow] = useState(false);
   const [name, setName] = useState();
   const [email, setEmail] = useState();
@@ -106,7 +107,7 @@ const Signup = () => {
         },
       };
 
-      const { data } = await axios.post('/api/user', { name, email, password, pic }, config);
+      const { data } = await axios.post(`https://mern-live-chat-self.vercel.app/api/user`, { name, email, password, pic }, config);
 
       toast({
         title: 'Registration successful!',
