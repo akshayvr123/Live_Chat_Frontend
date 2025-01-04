@@ -7,7 +7,7 @@ import UserBadgeItem from '../UserAvatar/UserBadgeItem'
 
 
 const GroupChatModel = ({children}) => {
-  const ENDPOINT=process.env.BACKEND_URL
+  const ENDPOINT=process.env.REACT_APP_BACKEND_URL
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [groupChatName,setGroupChatName]=useState()
     const [selectedUsers,setSelectedUsers]=useState([])

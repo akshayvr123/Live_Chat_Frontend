@@ -9,7 +9,8 @@ const Login = () => {
   const[password,setPasword]=useState()
   const[loading,setLoading]=useState(false)
   const ENDPOINT=process.env.REACT_APP_BACKEND_URL
-  console.log("End point is "+ENDPOINT);
+  
+  
   
   const navigate = useNavigate();
   const toast=useToast()
@@ -36,7 +37,7 @@ const Login = () => {
         }
       }
       const {data}=await axios.post(
-        `https://mern-live-chat-self.vercel.app/api/user/login`,
+        `${ENDPOINT}/api/user/login`,
         {email,password},
         config
       )

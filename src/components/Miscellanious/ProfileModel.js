@@ -4,6 +4,7 @@ import React from 'react'
 
 const ProfileModel = ({ user, children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+
   return (
     <>
       {children ? <span onClick={onOpen}>{children}</span> : (

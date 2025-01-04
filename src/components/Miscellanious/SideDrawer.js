@@ -13,7 +13,7 @@ import {getSender} from '../../Config/ChatLogic'
 // import NotificationBadge from 'react-notification-badge/lib/components/NotificationBadge'
 
 const SideDrawer = () => {
-  const ENDPOINT=process.env.BACKEND_URL
+  const ENDPOINT=process.env.REACT_APP_BACKEND_URL
   const { isOpen, onOpen, onClose } = useDisclosure()
   const {user,setSelectedChat,chats,setChats,notification,setNotification}=ChatState()
   const [search,setSearch]=useState("")

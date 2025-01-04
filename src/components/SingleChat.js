@@ -13,7 +13,7 @@ import io from "socket.io-client"
 import animationData from "../Animations/typing.json";
 
 
-const ENDPOINT=process.env.BACKEND_URL
+const ENDPOINT=process.env.REACT_APP_BACKEND_URL
 var socket,selectedChatCompare
 
 const SingleChat = ({fetchAgain,setFetchAgain}) => {

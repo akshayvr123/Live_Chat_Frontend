@@ -7,7 +7,7 @@ import axios from 'axios'
 import UserListItem from '../UserAvatar/UserListItem'
 
 const UpdateGroupChatModal = ({fetchAgain,setFetchAgain,fetchMessages}) => {
-  const ENDPOINT=process.env.BACKEND_URL
+  const ENDPOINT=process.env.REACT_APP_BACKEND_URL
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [groupChatName, setGroupChatName] = useState();
     const [search,setSearch]=useState()

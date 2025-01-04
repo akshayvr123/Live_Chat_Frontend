@@ -8,7 +8,7 @@ import { getSender } from '../../Config/ChatLogic'
 import GroupChatModel from './GroupChatModel'
 
 const MyChats = ({fetchAgain}) => {
-  const ENDPOINT=process.env.BACKEND_URL
+  const ENDPOINT=process.env.REACT_APP_BACKEND_URL
   const [loggedUser,setLoggedUser]=useState()
   const {chats,setChats, user, setUser,selectedchat,setSelectedChat }=ChatState()
   const toast=useToast()
